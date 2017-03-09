@@ -12,6 +12,9 @@
     <!-- Optional theme -->
     <link rel="stylesheet" href="css/bootstrap-theme.min.css" >
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/notify.css" >
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -36,7 +39,7 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label" for="email">Correo Electronico</label>
                     <div class="col-sm-9">
-                        <input type="email" class="form-control" name="email" id="email" placeholder="Correo Electronico">
+                        <input type="email" class="form-control" name="email" id="email" placeholder="Correo Electronico" autocomplete="off">
                     </div>
                 </div>
 
@@ -158,71 +161,71 @@
                 <!-- Empieza Encuesta -->
 
                 <!-- Pregunta 1 -->
-                <div class="form-group">
+                <div class="form-group" id="pregunta1">
                     <label class="col-sm-3 control-label"><strong>1. A traves de que vias recibis informacion sobre VIH-SIDA?</strong></label>
                     <div class="col-sm-9">
                         <label class="checkbox-inline">
-                            <input type="radio" name="pregunta1" class="pregunta1" value="Familia">
+                            <input type="checkbox" name="respuesta1" class="respuesta1" value="Familia">
                             Familia
                         </label>
                         <label class="checkbox-inline">
-                            <input type="radio" name="pregunta1" class="pregunta1" value="Universidad">
+                            <input type="checkbox" name="respuesta2" class="respuesta1" value="Universidad">
                             Universidad
                         </label>
                         <label class="checkbox-inline">
-                            <input type="radio" name="pregunta1" class="pregunta1" value="Folletos">
+                            <input type="checkbox" name="respuesta3" class="respuesta1" value="Folletos">
                             Folletos
                         </label>
                         <label class="checkbox-inline">
-                            <input type="radio" name="pregunta1" class="pregunta1" value="Internet">
+                            <input type="checkbox" name="respuesta4" class="respuesta1" value="Internet">
                             Internet
                         </label>
                         <label class="checkbox-inline">
-                            <input type="radio" name="pregunta1" class="pregunta1" value="Revistas">
+                            <input type="checkbox" name="respuesta5" class="respuesta1" value="Revistas">
                             Revistas
                         </label>
                         <label class="checkbox-inline">
-                            <input type="radio" name="pregunta1" class="pregunta1" value="TV">
+                            <input type="checkbox" name="respuesta6" class="respuesta1" value="TV">
                             TV
                         </label>
                         <label class="checkbox-inline">
-                            <input type="radio" name="pregunta1" class="pregunta1" value="Institucion">
+                            <input type="checkbox" name="respuesta7" class="respuesta1" value="Institucion">
                             Institucion
                         </label>
                         <label class="checkbox-inline">
-                            <input type="radio" name="pregunta1" class="pregunta1" value="Escuela">
+                            <input type="checkbox" name="respuesta8" class="respuesta1" value="Escuela">
                             Escuela
                         </label>
                         <label class="checkbox-inline">
-                            <input type="radio" name="pregunta1" class="pregunta1" value="Inv. Personal">
+                            <input type="checkbox" name="respuesta9" class="respuesta1" value="Inv. Personal">
                             Inv. Personal
                         </label>
                         <label class="checkbox-inline">
-                            <input type="radio" name="pregunta1" class="pregunta1" value="Amigo">
+                            <input type="checkbox" name="respuesta10" class="respuesta1" value="Amigo">
                             Amigo
                         </label>
                         <label class="checkbox-inline">
-                            <input type="radio" name="pregunta1" class="pregunta1" value="Radio">
+                            <input type="checkbox" name="respuesta11" class="respuesta1" value="Radio">
                             Radio
                         </label>
                         <label class="checkbox-inline">
-                            <input type="radio" name="pregunta1" class="pregunta1" value="Libros">
+                            <input type="checkbox" name="respuesta12" class="respuesta1" value="Libros">
                             Libros
                         </label>
                         <label class="checkbox-inline">
-                            <input type="radio" name="pregunta1" class="pregunta1" value="Hospital">
+                            <input type="checkbox" name="respuesta13" class="respuesta1" value="Hospital">
                             Hospital
                         </label>
                         <label class="checkbox-inline">
-                            <input type="radio" name="pregunta1" class="pregunta1" value="Via Publica">
+                            <input type="checkbox" name="respuesta14" class="respuesta1" value="Via Publica">
                             Via Publica
                         </label>
                         <label class="checkbox-inline">
-                            <input type="radio" name="pregunta1" class="pregunta1" value="Diarios">
+                            <input type="checkbox" name="respuesta15" class="respuesta1" value="Diarios">
                             Diarios
                         </label>
                         <label class="checkbox-inline">
-                            <input type="radio" name="pregunta1" class="pregunta1" value="Otra">
+                            <input type="checkbox" name="respuesta16" class="respuesta1" value="Otra">
                             Otra
                         </label>
                     </div>
@@ -230,15 +233,15 @@
                 <!-- Pregunta 1 -->
 
                 <!-- Pregunta 2 -->
-                <div class="form-group">
+                <div class="form-group" id="pregunta2">
                     <label class="col-sm-3 control-label"><strong>2. Crees que Vih y Sida es lo mismo?</strong></label>
                     <div class="col-sm-9">
                         <label class="radio-inline">
-                            <input type="radio" name="pregunta2" class="pregunta2" value="Si">
+                            <input type="radio" name="respuesta2" class="pregunta2" value="Si">
                             Si
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" name="pregunta2" class="pregunta2" value="No">
+                            <input type="radio" name="respuesta2" class="pregunta2" value="No">
                             No
                         </label>
                     </div>
@@ -255,7 +258,7 @@
                                     <input type="radio" name="respuesta3" class="pregunta3" value="Si">
                                     Si
                                 </label>
-                                <div class="checkbox" id="motivo-respuesta3-si">
+                                <div class="checkbox" id="motivo3-si">
                                     <label class="checkbox">
                                         <input type="radio" name="motivo31" class="pregunta31" value="Uso drogas">
                                         Uso drogas
@@ -281,7 +284,7 @@
                                     <input type="radio" name="respuesta3" class="pregunta3" value="No">
                                     No
                                 </label>
-                                <div class="checkbox" id="motivo-respuesta3-no">
+                                <div class="checkbox" id="motivo3-no">
                                     <label class="checkbox">
                                         <input type="radio" name="motivo32" class="pregunta31" value="Uso preservativo siempre">
                                         Uso preservativo siempre
@@ -312,7 +315,7 @@
                 <hr>
 
                 <!-- Pregunta 4 -->
-                <div class="form-group">
+                <div class="form-group" id="pregunta4">
                     <label class="col-sm-3 control-label"><strong>4. Usas preservativo?</strong></label>
                     <div class="col-sm-9">
                         <div class="row">
@@ -332,17 +335,17 @@
                                     <input type="radio" name="respuesta4" class="pregunta4" value="No">
                                     No
                                 </label>
-                                <div class="checkbox">
+                                <div class="checkbox" id="motivo4-no">
                                     <label class="checkbox">
-                                        <input type="radio" name="motivo42" class="pregunta41" value="Conozco a mi pareja">
+                                        <input type="radio" name="motivo4" class="pregunta42" value="Conozco a mi pareja">
                                         Conozco a mi pareja
                                     </label>
                                     <label class="checkbox">
-                                        <input type="radio" name="motivo42" class="pregunta41" value="No me gusta">
+                                        <input type="radio" name="motivo4" class="pregunta42" value="No me gusta">
                                         No me gusta
                                     </label>
                                     <label class="checkbox">
-                                        <input type="radio" name="motivo42" class="pregunta41" value="Otra">
+                                        <input type="radio" name="motivo4" class="pregunta42" value="Otra">
                                         Otra
                                     </label>
                                 </div>
@@ -354,15 +357,15 @@
 
                 <hr>
                 <!-- Pregunta 5 -->
-                <div class="form-group">
+                <div class="form-group" id="pregunta5">
                     <label class="col-sm-3 control-label"><strong>5. Sabes cuantas pruebas hacen falta para saber con certeza si estas infectado con el virus Vih?</strong></label>
                     <div class="col-sm-9">
                         <label class="radio-inline">
-                            <input type="radio" name="pregunta5" class="pregunta5" value="Si">
+                            <input type="radio" name="respuesta5" class="pregunta5" value="Si">
                             Si
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" name="pregunta5" class="pregunta5" value="No">
+                            <input type="radio" name="respuesta5" class="pregunta5" value="No">
                             No
                         </label>
                     </div>
@@ -370,15 +373,15 @@
                 <!-- Pregunta 5 -->
 
                 <!-- Pregunta 6 -->
-                <div class="form-group">
+                <div class="form-group" id="pregunta6">
                     <label class="col-sm-3 control-label"><strong>6. Alguna vez realizaste la prueba de deteccion de Vih?</strong></label>
                     <div class="col-sm-9">
                         <label class="radio-inline">
-                            <input type="radio" name="pregunta6" class="pregunta6" value="Si">
+                            <input type="radio" name="respuesta6" class="pregunta6" value="Si">
                             Si
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" name="pregunta6" class="pregunta6" value="No">
+                            <input type="radio" name="respuesta6" class="pregunta6" value="No">
                             No
                         </label>
                     </div>
@@ -386,35 +389,35 @@
                 <!-- Pregunta 6 -->
 
                 <!-- Pregunta 7 -->
-                <div class="form-group">
+                <div class="form-group" id="pregunta7">
                     <label class="col-sm-3 control-label"><strong>7. Cuales de estas son vias de transmision?</strong></label>
                     <div class="col-sm-9">
                         <label class="checkbox-inline">
-                            <input type="checkbox" name="pregunta7" class="pregunta7" value="Semen">
+                            <input type="checkbox" name="respuesta1" class="pregunta7" value="Semen">
                             Semen
                         </label>
                         <label class="checkbox-inline">
-                            <input type="checkbox" name="pregunta7" class="pregunta7" value="Sangre">
+                            <input type="checkbox" name="respuesta2" class="pregunta7" value="Sangre">
                             Sangre
                         </label>
                         <label class="checkbox-inline">
-                            <input type="checkbox" name="pregunta7" class="pregunta7" value="Madre-Hijo">
+                            <input type="checkbox" name="respuesta3" class="pregunta7" value="Madre-Hijo">
                             Madre-Hijo
                         </label>
                         <label class="checkbox-inline">
-                            <input type="checkbox" name="pregunta7" class="pregunta7" value="Besos">
+                            <input type="checkbox" name="respuesta4" class="pregunta7" value="Besos">
                             Besos
                         </label>
                         <label class="checkbox-inline">
-                            <input type="checkbox" name="pregunta7" class="pregunta7" value="Sexo oral">
+                            <input type="checkbox" name="respuesta5" class="pregunta7" value="Sexo oral">
                             Sexo oral
                         </label>
                         <label class="checkbox-inline">
-                            <input type="checkbox" name="pregunta7" class="pregunta7" value="Compartir el mate">
+                            <input type="checkbox" name="respuesta6" class="pregunta7" value="Compartir el mate">
                             Compartir el mate
                         </label>
                         <label class="checkbox-inline">
-                            <input type="checkbox" name="pregunta7" class="pregunta7" value="Picaduras de insectos">
+                            <input type="checkbox" name="respuesta7" class="pregunta7" value="Picaduras de insectos">
                             Picaduras de insectos
                         </label>
                     </div>
@@ -422,15 +425,15 @@
                 <!-- Pregunta 7 -->
 
                 <!-- Pregunta 8 -->
-                <div class="form-group">
+                <div class="form-group" id="pregunta8">
                     <label class="col-sm-3 control-label"><strong>8. Sabes que son las ITS?</strong></label>
                     <div class="col-sm-9">
                         <label class="radio-inline">
-                            <input type="radio" name="pregunta8" class="pregunta8" value="Si">
+                            <input type="radio" name="respuesta8" class="pregunta8" value="Si">
                             Si
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" name="pregunta8" class="pregunta8" value="No">
+                            <input type="radio" name="respuesta8" class="pregunta8" value="No">
                             No
                         </label>
                     </div>
@@ -439,7 +442,7 @@
 
                 <hr>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary col-sm-2 col-sm-offset-4">Guardar</button>
+                    <button type="submit" class="btn btn-primary center-block">Guardar</button>
                 </div>
 
             </form><!-- encuesta-vih -->
@@ -456,11 +459,15 @@
 <script src="js/lib/jquery-3.1.1.min.js"></script>
 <!-- Bootstrap v3.3.7 compiled and minified JavaScript -->
 <script src="js/bootstrap.min.js"></script>
-<!-- app.js -->
-<script src="js/app.js"></script>
+<!-- Firebase Api -->
+<script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
 <!-- Google Api para Autocompletado-->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDO9eP6StRgcAA0hrh_Rjh2Zaf_A1Odr_U&libraries=places"
         async defer></script>
+<!-- app.js -->
+<script src="js/app.js"></script>
+<!-- Notify -->
+<script src="js/notify.js"></script>
 
 </body>
 </html>

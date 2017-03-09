@@ -4,6 +4,49 @@
 $(document).ready(function () {
     'use strict';
 
+    /*
+        COMIENZO Firebase
+     */
+    var configuracion = {
+        apiKey: "AIzaSyAaV33Xv8iAPzBhCoeZvKQsFEVQhNxICek",
+        authDomain: "encuesta-ryv.firebaseapp.com",
+        databaseURL: "https://encuesta-ryv.firebaseio.com",
+        storageBucket: "encuesta-ryv.appspot.com",
+        messagingSenderId: "384093119454"
+    };
+    var encuestaApp = firebase.initializeApp(configuracion);
+    /*
+        Reglas de escritura:
+     {
+         "rules": {
+         ".read": "auth != null",
+         ".write": "auth != null"
+         }
+     }
+     */
+
+    function agregarEncuesta(ruta, encuesta) {
+        var refEncuesta = encuestaApp.database().ref().child(ruta);
+
+        refEncuesta.push(encuesta);
+    }
+
+
+    //var encuestaVihRef = encuestaApp.database().ref().child('encuesta-vih');
+    //var encuestaVihRef = encuestaApp.database().ref('encuesta-vih').orderByChild('pregunta2/respuesta').equalTo('Si');
+    //var encuestaVihRef = encuestaApp.database().ref('encuesta-vih').orderByChild('sexo').equalTo('Femenino');
+
+    //var encuestaVihRef = encuestaApp.database().ref('encuesta-vih').orderByChild('sexo').equalTo('Femenino');
+
+    //encuestaVihRef.on('value', snap => console.log(snap.val()));
+
+
+    //var encuestaVihRef = encuestaApp.database().ref('encuesta-vih').orderByChild('pregunta1');
+    //encuestaVihRef.on('value', snap => console.log(snap.numChildren()));
+
+    // FIN Firebase
+
+
 
     /*
         COMIENZO Procesar el barrio ingresado con la api de Google
@@ -96,13 +139,24 @@ $(document).ready(function () {
         event.preventDefault();
 
         var encuestaVih = {};
+        var pregunta1 = {};
+        var pregunta2 = {};
+        var pregunta3 = {};
+        var pregunta4 = {};
+        var pregunta5 = {};
+        var pregunta6 = {};
+        var pregunta7 = {};
+        var pregunta8 = {};
+
+        var error = {};
+        var ruta = "encuesta-vih";
 
         // Obtener los datos
         var email = $("input[name=email]").val();
-        var sexo = $("input[name=sexo]:checked").val();
+        var sexo = $("input[name=sexo]:checked");
         var edad = $("input[name=edad]").val();
-        var estadoCivil = $("input[name=ecivil]:checked").val();
-        var estudios = $("input[name=instruccion]:checked").val();
+        var estadoCivil = $("input[name=ecivil]:checked");
+        var estudios = $("input[name=instruccion]:checked");
         var ocupacion = $("input[name=ocupacion]").val();
         var barrio = $("input[name=barrio]").val();
         var cp = $("input[name=cp]").val();
@@ -111,28 +165,220 @@ $(document).ready(function () {
         if(email.length > 0) {
             encuestaVih['correo'] = email;
         }
-        encuestaVih['sexo'] = sexo;
+
         if(edad.length > 0) {
             encuestaVih['edad'] = edad;
         }
-        encuestaVih['estado civil'] = estadoCivil;
-        encuestaVih['estudios'] = estudios;
+
         if(ocupacion.length > 0) {
             encuestaVih['ocupacion'] = ocupacion;
         }
+
         if(barrio.length > 0) {
             encuestaVih['barrio'] = barrio;
         }
+
         if(cp.length > 0) {
             encuestaVih['cp'] = cp;
         }
 
-        console.log(encuestaVih);
+        /* -- Encuesta -- */
+
+
+
+        /* -- Obtener Respuestas -- */
+
+        // Obtener la respuesta1
+        $('#pregunta1 input[type=checkbox]:checked').each(function () {
+            var respuesta = this;
+            pregunta1[respuesta.name] = respuesta.value;
+        });
+
+        var respuesta2 = $('#pregunta2 input[name=respuesta2]:checked');
+        var respuesta3 = $('#pregunta3 input[name=respuesta3]:checked');
+        var respuesta4 = $('#pregunta4 input[name=respuesta4]:checked');
+        var respuesta5 = $('#pregunta5 input[name=respuesta5]:checked');
+        var respuesta6 = $('#pregunta6 input[name=respuesta6]:checked');
+        var respuesta8 = $('#pregunta8 input[name=respuesta8]:checked');
+
+        // Obtener la respuesta7
+        $('#pregunta7 input[type=checkbox]:checked').each(function () {
+            var respuesta = this;
+            pregunta7[respuesta.name] = respuesta.value;
+        });
+
+
+
+        /* -- Verificacion de preguntas respondidas -- */
+
+        // Verificar si fue ingresada la respuesta de la pregunta 8
+        if (respuesta8.length === 0) {
+            error['codigo'] = 8;
+            error['mensaje'] = "Falta completar la respuesta de la pregunta 8";
+        } else {
+            pregunta8 = obtenerRespuesta(pregunta8, respuesta8.val());
+        }
+
+        // Verificar si fue ingresada la respuesta de la pregunta 7
+        if($.isEmptyObject(pregunta7)) {
+            error['codigo'] = 7;
+            error['mensaje'] = "Falta completar la respuesta de la pregunta 7";
+        }
+
+        // Verificar si fue ingresada la respuesta de la pregunta 6
+        if (respuesta6.length === 0) {
+            error['codigo'] = 6;
+            error['mensaje'] = "Falta completar la respuesta de la pregunta 6";
+        } else {
+            pregunta6 = obtenerRespuesta(pregunta6, respuesta6.val());
+        }
+
+        // Verificar si fue ingresada la respuesta de la pregunta 5
+        if (respuesta5.length === 0) {
+            error['codigo'] = 5;
+            error['mensaje'] = "Falta completar la respuesta de la pregunta 5";
+        } else {
+            pregunta5 = obtenerRespuesta(pregunta5, respuesta5.val());
+        }
+
+        // Verificar si fue ingresada la respuesta de la pregunta 4
+        if (respuesta4.length === 0) {
+            error['codigo'] = 4;
+            error['mensaje'] = "Falta completar la respuesta de la pregunta 4";
+        } else {
+            if (respuesta4.val() === "No") {
+                var motivo4 = $('#motivo4-no input[name=motivo4]:checked');
+                if(motivo4.length === 0) {
+                    error['codigo'] = 42;
+                    error['mensaje'] = "Falta completar el motivo de la pregunta 4";
+                } else {
+                    pregunta4 = obtenerRespuesta(pregunta4, respuesta4.val());
+                    pregunta4['motivo'] = motivo4.val();
+                }
+            } else {
+                pregunta4 = obtenerRespuesta(pregunta4, respuesta4.val());
+            }
+        }
+
+        // Verificar si fue ingresada la respuesta de la pregunta 3
+        if(respuesta3.val() === "Si") {
+            // Obtener el motivo
+            var motivo31 = $('#motivo3-si input[name=motivo31]:checked');
+            // Si no se ingreso el motivo
+            if(motivo31.length === 0) {
+                error['codigo'] = 31;
+                error['mensaje'] = "Falta completar el motivo de la pregunta 3";
+            } else {
+                pregunta3['motivo'] = motivo31.val();
+            }
+            pregunta3 = obtenerRespuesta(pregunta3, respuesta3.val());
+
+        } else  if(respuesta3.val() === "No") {
+            // Obtener el motivo
+            var motivo32 = $('#motivo3-no input[name=motivo32]:checked');
+            // Si no se ingreso el motivo
+            if(motivo32.length === 0) {
+                error['codigo'] = 32;
+                error['mensaje'] = "Falta completar el motivo de la pregunta 3";
+                //console.log(error.mensaje);
+            } else {
+                pregunta3['motivo'] = motivo32.val();
+            }
+            pregunta3 = obtenerRespuesta(pregunta3, respuesta3.val());
+
+        } else {
+            error['codigo'] = 3;
+            error['mensaje'] = "Falta completar la respuesta de la pregunta 3";
+        }
+
+        // Verificar si fue ingresada la respuesta de la pregunta 2
+        if (respuesta2.length === 0) {
+            error['codigo'] = 2;
+            error['mensaje'] = "Falta completar la respuesta de la pregunta 2";
+        } else {
+            pregunta2 = obtenerRespuesta(pregunta2, respuesta2.val());
+        }
+
+        // Verificar si fue ingresada la respuesta de la pregunta 1
+        if($.isEmptyObject(pregunta1)) {
+            error['codigo'] = 1;
+            error['mensaje'] = "Falta completar la respuesta de la pregunta 1";
+        }
+
+        // Verificar si fue ingresado el nivel de instruccion de la persona encuestada
+        if (estudios.length === 0) {
+            error['codigo'] = 12;
+            error['mensaje'] = "Falta completar el nivel de instruccion de la persona encuestada";
+        } else {
+            encuestaVih['estudios'] = estudios.val();
+        }
+
+        // Verificar si fue ingresado el estado civil de la persona encuestada
+        if (estadoCivil.length === 0) {
+            error['codigo'] = 11;
+            error['mensaje'] = "Falta completar el estado civil de la persona encuestada";
+        } else {
+            encuestaVih['estado civil'] = estadoCivil.val();
+        }
+
+        // Verificar si fue ingresado el sexo de la persona encuestada
+        if (sexo.length === 0) {
+            error['codigo'] = 10;
+            error['mensaje'] = "Falta completar el sexo de la persona encuestada";
+        } else {
+            encuestaVih['sexo'] = sexo.val();
+        }
+
+
+        /* -- Cargar encuesta y Guardar en Firebase si no hay Errores -- */
+
+        // Si No hay errores
+        if($.isEmptyObject(error)) {
+            // Cargar preguntas en la encuesta
+            encuestaVih['pregunta1'] = pregunta1;
+            encuestaVih['pregunta2'] = pregunta2;
+            encuestaVih['pregunta3'] = pregunta3;
+            encuestaVih['pregunta4'] = pregunta4;
+            encuestaVih['pregunta5'] = pregunta5;
+            encuestaVih['pregunta6'] = pregunta6;
+            encuestaVih['pregunta7'] = pregunta7;
+            encuestaVih['pregunta8'] = pregunta8;
+
+            //agregarEncuesta(ruta, encuestaVih);
+
+            console.log(encuestaVih);
+            // Mostrar la notificacion de exito
+            $.notify(" La encuesta fue ingresada con exito", {
+                type: "success",
+                delay: 5000,
+                animation: true,
+                animationType: "drop",
+                icon: "check-circle",
+                close: true
+            });
+            limpiarFormulario();
+        } else {
+            // Mostrar Error
+            $.notify(" " + error.mensaje, {
+                type: "danger",
+                delay: 5000,
+                animation: true,
+                animationType: "drop",
+                icon: "exclamation-circle",
+                close: true
+            });
+        }
+
 
     });
 
+    function obtenerRespuesta(pregunta, valor) {
+        pregunta['respuesta'] = valor;
+        return pregunta;
+    }
+
     // Evento para mostrar los motivos de la pregunta 3 segun la respuesta de Si o No
-    $('input[name=respuesta3]').on('click', function () {
+    $('#pregunta3 input[name=respuesta3]').on('click', function () {
        var respuesta3 = this.value;
 
         // Respuesta positiva
@@ -163,8 +409,18 @@ $(document).ready(function () {
         }
     });
 
+
+    function limpiarFormulario() {
+        $("input[type=text]").val("");
+        $("input[type=email]").val("");
+        $("input[type=number]").val("");
+        $("input:checked[type=radio]").prop("checked", false);
+        $("input[type=checkbox]:checked").prop('checked', false);
+    }
+
+    /*
     // Evento para mostrar los motivos de la pregunta 3 segun la respuesta de Si o No
-    $('input[name=respuesta4]').on('click', function () {
+    $('#pregunta4 input[name=respuesta4]').on('click', function () {
         var respuesta4 = this.value;
 
         // Respuesta positiva
@@ -191,5 +447,5 @@ $(document).ready(function () {
         }
         console.log(respuesta4);
     });
-
+    */
 });
