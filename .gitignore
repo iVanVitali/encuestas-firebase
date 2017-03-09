@@ -1,2 +1,7 @@
 .idea/
 .DS_Store
+.firebaserc
+functions/
+public/
+database.rules.json
+firebase.json

@@ -100,7 +100,7 @@ $(document).ready(function () {
 
             if (componentForm[addressType] && addressType === tipoDireccion) {
                 var val = place.address_components[i][componentForm[addressType]];
-                $('input[name=barrio]').attr('value', val);
+                $('#barrio').prop('value', val);
             }
         }
     }
@@ -130,6 +130,7 @@ $(document).ready(function () {
     initAutocomplete();
     // Disparar Evento cuando el focus esta sobre el campo autocomplete
     $("#autocomplete").on('focus', geolocate());
+
 
 // [END region_geolocation]
 // FIN Procesar el barrio ingresado con la api de Google
@@ -344,7 +345,7 @@ $(document).ready(function () {
             encuestaVih['pregunta7'] = pregunta7;
             encuestaVih['pregunta8'] = pregunta8;
 
-            //agregarEncuesta(ruta, encuestaVih);
+            agregarEncuesta(ruta, encuestaVih);
 
             console.log(encuestaVih);
             // Mostrar la notificacion de exito
