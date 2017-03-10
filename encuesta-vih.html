@@ -14,6 +14,7 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/notify.css" >
+    <link rel="stylesheet" href="css/custom.css" >
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -23,12 +24,43 @@
     <![endif]-->
 </head>
 <body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Encuestas RyV</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar">
+            <ul class="nav navbar-nav">
+                <li><a href="home.html">Inicio<span class="sr-only">(current)</span></a></li>
+                <li class="dropdown active">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Encuestas<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li class="active"><a href="encuesta-vih.html">ViH</a></li>
+                        <li><a href="#">Adicciones</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Estadistica</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <!-- User name and logout link go here -->
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- container-fluid -->
+</nav> <!-- nav -->
+
 <div class="container">
-    <h1>Encuesta Vih - RyV!</h1>
-    <ul>
-        <li><a href="index.html">Pagina principal</a></li>
-        <li>Encuesta Adic</li>
-    </ul>
 
     <div class="panel panel-info">
         <div class="panel-heading">
@@ -458,19 +490,22 @@
 
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-
 <script src="js/lib/jquery-3.1.1.min.js"></script>
 <!-- Bootstrap v3.3.7 compiled and minified JavaScript -->
 <script src="js/bootstrap.min.js"></script>
 <!-- Firebase Api -->
 <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
+<!-- Encuesta Api -->
+<script src="js/encuesta_api.js"></script>
 <!-- Google Api para Autocompletado-->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDO9eP6StRgcAA0hrh_Rjh2Zaf_A1Odr_U&libraries=places"
         async defer></script>
-<!-- app.js -->
-<script src="js/app.js"></script>
+<!-- Campo Autocompletado usa Google Api -->
+<script src="js/campo-autocompletado.js"></script>
 <!-- Notify -->
 <script src="js/notify.js"></script>
+<!-- Encuesta Vih -->
+<script src="js/encuesta-vih.js"></script>
 
 </body>
 </html>
