@@ -20,13 +20,19 @@ $(function () {
 
     auth.onAuthStateChanged(function(user) {
         if (user) {
-            var loggedIn = '<li><p class="navbar-text">' + user.displayName + '</p></li>';
-            loggedIn += '<li><a href="#" id="logoutLink">Salir</a></li>';
+            // Mostrar el menu del usuario logueado
+            var userMenu = '<li class="dropdown">';
+            userMenu += '<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">' + user.displayName + '<span class="caret"></span></a>';
+            userMenu += '<ul class="dropdown-menu">';
+            userMenu +=     '<li><a href="perfil.html">Pefil</a></li>';
+            userMenu +=     '<li role="separator" class="divider"></li>';
 
-            $(loggedIn).appendTo('.navbar-right');
+            userMenu +=     '<li><a href="#" id="logoutLink">Salir</a></li>';
+            userMenu += '</ul>';
+            userMenu += '</li>';
+
+            $(userMenu).appendTo('.navbar-right');
             $('#logoutLink').click(salir);
-            // Obtener el id del usuario
-            usuarioId = user.uid;
         } else {
             redirect(index);
         }

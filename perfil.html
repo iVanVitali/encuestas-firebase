@@ -37,7 +37,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Inicio<span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="home.html">Inicio<span class="sr-only">(current)</span></a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Encuestas<span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -56,20 +56,40 @@
     </div><!-- container-fluid -->
 </nav> <!-- nav -->
 <div class="container">
-    <div class="jumbotron">
-        <h1>Bienvenido a Encuestas RyV!</h1>
-        <div class="jumbotron">
-            <h1>Bienvenidos a Encuestas RyV!</h1>
-            <p>Es una aplicacion Web para ingresar encuestas de Vih y Adicciones de RyV.</p>
-            <p>Mas informacion sobre Rock & Vida podes encontrar en <a href="http://rockandvida.org">rockandvida.org</a></p>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Datos del Perfil</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class="row">
+                        <div class="col-xs-2 col-sm-2">
+                            <strong>Nombre</strong>
+                        </div>
+                        <div class="col-xs-6 col-sm-5" id="nombrePerfil">
+                            <!-- Nombre del usuario -->
+                        </div>
+                        <div class="col-xs-4 col-sm-5">
+                            <a href="modificar-nombre.html">Modificar</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-2 col-sm-2">
+                            <strong>Email</strong>
+                        </div>
+                        <div class="col-xs-6 col-sm-5" id="correoPerfil">
+                            <!-- Correo del usuario -->
+                        </div>
+                        <div class="col-xs-4 col-sm-5">
+                            <a href="modificar-correo.html">Modificar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <h1>Encuestas RyV!</h1>
-    <ul>
-        <li><a href="encuesta-vih.html">Encuesta Vih</a></li>
-        <li>Encuesta Adic</li>
-    </ul>
 </div>
 
 
@@ -83,7 +103,7 @@
 <!-- Encuesta Api -->
 <script src="js/encuesta_api.js"></script>
 <!-- Home -->
-<script src="js/home.js"></script>
+<script src="js/perfil.js"></script>
 
 </body>
 </html>

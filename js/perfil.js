@@ -1,5 +1,5 @@
 /**
- * Created by webcoder on 9/3/17.
+ * Created by webcoder on 11/3/17.
  */
 $(document).ready(function () {
     'use strict';
@@ -27,6 +27,9 @@ $(document).ready(function () {
 
     auth.onAuthStateChanged(function(user) {
         if (user) {
+            var nombreUsuario = user.displayName;
+            var correoUsuario = user.email;
+
             // Mostrar el menu del usuario logueado
             var userMenu = '<li class="dropdown">';
             userMenu += '<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">' + user.displayName + '<span class="caret"></span></a>';
@@ -40,9 +43,19 @@ $(document).ready(function () {
 
             $(userMenu).appendTo('.navbar-right');
             $('#logoutLink').click(salir);
+
+            mostrarNombrePerfil(nombreUsuario);
+            mostrarCorreoPerfil(correoUsuario);
         } else {
             redirect(index);
         }
     });
+
+    function mostrarNombrePerfil(nombre) {
+        $("#nombrePerfil").text(nombre);
+    }
+    function mostrarCorreoPerfil(correo) {
+        $("#correoPerfil").text(correo);
+    }
 
 });
