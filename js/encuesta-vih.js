@@ -5,7 +5,6 @@ $(function () {
     "use strict";
 
     var auth = encuestaApp.auth();
-    var usuarioId;
 
     function salir() {
         auth.signOut().then(function() {
@@ -20,6 +19,7 @@ $(function () {
 
     auth.onAuthStateChanged(function(user) {
         if (user) {
+
             // Mostrar el menu del usuario logueado
             var userMenu = '<li class="dropdown">';
             userMenu += '<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">' + user.displayName + '<span class="caret"></span></a>';
@@ -270,6 +270,10 @@ $(function () {
 
         // Ingresar encuesta si no hay errores
         if($.isEmptyObject(error)) {
+
+            var user = firebase.auth().currentUser;
+            var usuarioId = user.uid;
+
             // Cargar preguntas en la encuesta
             encuestaVih['pregunta1'] = pregunta1;
             encuestaVih['pregunta2'] = pregunta2;
@@ -281,6 +285,13 @@ $(function () {
             encuestaVih['pregunta8'] = pregunta8;
             encuestaVih['creado'] = (new Date()).getTime();
 
+            // Agregar el id del usuario a la encuesta
+            if (user) {
+                encuestaVih['usuarioId'] = usuarioId;
+            } else {
+                encuestaVih['usuarioId'] = "encuesta-web";
+            }
+
             // Ingresar la encuesta a la base de datos
             agregarEncuesta(ruta_encuesta, encuestaVih, obtenerEncuestaId);
 
@@ -290,6 +301,7 @@ $(function () {
 
             // Agregar encuesta por usuario
             agregarEncuestaPorUsuario(ruta_porUsuario, usuarioId, encuestaPorUsuario);
+
 
             // Actualizar el numoero de encuestas de Vih del usuario
             actualizarNumeroEncuestaVih('usuarios', usuarioId);
@@ -303,6 +315,27 @@ $(function () {
             pregunta6.encuestaId = encuestaId;
             pregunta7.encuestaId = encuestaId;
             pregunta8.encuestaId = encuestaId;
+
+            // Agregar el id del usuario a las preguntas
+            if (user) {
+                pregunta1['usuarioId'] = usuarioId;
+                pregunta2['usuarioId'] = usuarioId;
+                pregunta3['usuarioId'] = usuarioId;
+                pregunta4['usuarioId'] = usuarioId;
+                pregunta5['usuarioId'] = usuarioId;
+                pregunta6['usuarioId'] = usuarioId;
+                pregunta7['usuarioId'] = usuarioId;
+                pregunta8['usuarioId'] = usuarioId;
+            } else {
+                pregunta1['usuarioId'] = "encuesta-web";
+                pregunta2['usuarioId'] = "encuesta-web";
+                pregunta3['usuarioId'] = "encuesta-web";
+                pregunta4['usuarioId'] = "encuesta-web";
+                pregunta5['usuarioId'] = "encuesta-web";
+                pregunta6['usuarioId'] = "encuesta-web";
+                pregunta7['usuarioId'] = "encuesta-web";
+                pregunta8['usuarioId'] = "encuesta-web";
+            }
 
             // Completar las preguntas
             completarPreguta(pregunta1, encuestaVih);

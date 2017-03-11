@@ -22,10 +22,6 @@
      }
      */
 
-
-
-        //const encuestaVihRef = encuestaApp.database().ref("encuesta-vih");
-
     function agregarEncuesta(ruta, encuesta, callback) {
         var encuestaVihRef = encuestaApp.database().ref(ruta);
         var pushedEncuestaVihRef = encuestaVihRef.push(encuesta);
