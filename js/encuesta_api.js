@@ -4,11 +4,11 @@
     /** Firebase **/
 
     var configuracion = {
-        apiKey: "AIzaSyAaV33Xv8iAPzBhCoeZvKQsFEVQhNxICek",
-        authDomain: "encuesta-ryv.firebaseapp.com",
-        databaseURL: "https://encuesta-ryv.firebaseio.com",
-        storageBucket: "encuesta-ryv.appspot.com",
-        messagingSenderId: "384093119454"
+        apiKey: "AIzaSyD_vSc4ch4UNmAM-GIgN6kQFCgMxslG31s",
+        authDomain: "encuesta-ryv-dev.firebaseapp.com",
+        databaseURL: "https://encuesta-ryv-dev.firebaseio.com",
+        storageBucket: "encuesta-ryv-dev.appspot.com",
+        messagingSenderId: "793547270104"
     };
     var encuestaApp = firebase.initializeApp(configuracion);
 
