@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" ng-app="encApp">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -42,9 +42,16 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Encuestas<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="encuesta-vih.html">ViH</a></li>
-                        <li><a href="#">Adicciones</a></li>
+                        <li><a href="encuesta-adicciones.html">Adicciones</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Estadistica<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="estadistica-vih.html">ViH</a></li>
+                        <li><a href="estadistica-adicciones.html">Adicciones</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="#">Estadistica</a></li>
+                        <li><a href="estadistica-general.html">General</a></li>
                     </ul>
                 </li>
             </ul>
@@ -56,10 +63,9 @@
     </div><!-- container-fluid -->
 </nav> <!-- nav -->
 <div class="container">
-    <div class="jumbotron">
-            <h1>Bienvenidos a Encuestas RyV!</h1>
-            <p>Es una aplicacion Web para ingresar encuestas de Vih y Adicciones de RyV.</p>
-            <p>Mas informacion sobre Rock & Vida podes encontrar en <a href="http://rockandvida.org">rockandvida.org</a></p>
+    <div class="jumbotron" ng-controller="UsuarioController">
+            <h1>Bienvenido, {{ nombre }}!</h1>
+            <p>Ahora podes ingresar las encuestas de Vih y proximamente de Adicciones.</p>
         </div>
     </div>
 </div>
@@ -74,6 +80,8 @@
 <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
 <!-- Encuesta Api -->
 <script src="js/encuesta_api.js"></script>
+<!-- Angular -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.js"></script>
 <!-- Home -->
 <script src="js/home.js"></script>
 

@@ -53,7 +53,7 @@
             var usuario = snap.val();
             // actualizar el numero de encuestas de Vih
             usuarioRef.update({
-                encuestaHiv: (usuario.encuestaHiv || 0) + 1
+                encuestaVih: (usuario.encuestaVih || 0) + 1
             }, function (error) {
                 if (error) {
                     console.log('update error!', error);
@@ -68,7 +68,7 @@
         usuarioRef.set({
             nombre: datos.nombre,
             correo: datos.correo,
-            encuestaHiv: datos.encuestaHiv,
+            encuestaVih: datos.encuestaVih,
             encuestaAdicciones: datos.encuestaAdicciones,
             creado: datos.creado
         });

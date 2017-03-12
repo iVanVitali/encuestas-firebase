@@ -10,16 +10,16 @@ $(document).ready(function () {
 
     function registrarUsuario(email, password, name) {
         var user = auth.createUserWithEmailAndPassword(email, password)
-            .then(function () {
+            .then(function (user) {
 
                 //console.log("registrando nuevo usuario");
-                var userLoggedIn = auth.currentUser;
-                var userKey = userLoggedIn.uid;
+                //var userLoggedIn = auth.currentUser;
+                var userKey = user.uid;
 
                 var datosUsuario = {
                     "nombre": name,
                     "correo": email,
-                    "encuestaHiv": 0,
+                    "encuestaVih": 0,
                     "encuestaAdicciones": 0,
                     "creado": (new Date()).getTime()
                 };
@@ -28,20 +28,8 @@ $(document).ready(function () {
                 // Ingresar usuario
                 ingresarUsuario('usuarios', userKey, datosUsuario);
 
-                /*
-                var usuariosRef = firebase.database().ref('usuarios');
-                var usuarioRef = usuariosRef.child(userKey);
-
-                usuarioRef.push(datosUsuario, function (error) {
-                    if (error) {
-                        console.warn('error!', error);
-                    } else {
-                        console.log('Se ingresaron los datos del usuario con exito!');
-                    }
-                });
-                */
                 // Actualizar el nombre del usuario registrado
-                userLoggedIn.updateProfile({
+                user.updateProfile({
                     displayName: name,
                     photoURL: ""
                 }).then(function() {

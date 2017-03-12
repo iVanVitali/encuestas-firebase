@@ -43,14 +43,6 @@ $(function () {
     var login = "ingresar.html";
     var encuestaId;
 
-    /** Pruebas (se puede borrarlas)**/
-    // ruta para obtener la cantidad total de encuestas ingresadas
-    var ruta = "encuesta-vih/encuestas";
-    // Obtener la cantidad total de encuestas de Hiv ingresadas
-    obtenerCantidadEncuestasVih(ruta, obtenerNumeroEncuestasVih);
-    /** FIN Pruebas **/
-
-
     function redirect(ruta) {
         location.assign(ruta);
     }

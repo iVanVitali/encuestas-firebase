@@ -31,10 +31,10 @@ $(document).ready(function () {
         if (user) {
             $('.navbar-right').text('');
             // Mostrar el menu del usuario logueado
-            var userMenu = '<li class="dropdown">';
+            var userMenu = '<li class="dropdown active">';
             userMenu += '<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">' + user.displayName + '<span class="caret"></span></a>';
             userMenu += '<ul class="dropdown-menu">';
-            userMenu +=     '<li><a href="perfil.html">Pefil</a></li>';
+            userMenu +=     '<li class="active"><a href="perfil.html">Pefil</a></li>';
             userMenu +=     '<li role="separator" class="divider"></li>';
 
             userMenu +=     '<li><a href="#" id="logoutLink">Salir</a></li>';

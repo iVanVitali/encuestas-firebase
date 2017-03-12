@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" ng-app="encuestaApp">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,10 +11,7 @@
 
     <!-- Optional theme -->
     <link rel="stylesheet" href="css/bootstrap-theme.min.css" >
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/notify.css" >
-    <link rel="stylesheet" href="css/custom.css" >
+    <link rel="stylesheet" href="css/custom.css">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -48,10 +45,10 @@
                         <li><a href="encuesta-adicciones.html">Adicciones</a></li>
                     </ul>
                 </li>
-                <li class="dropdown">
+                <li class="dropdown active">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Estadistica<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="estadistica-vih.html">ViH</a></li>
+                        <li class="active"><a href="estadistica-vih.html">ViH</a></li>
                         <li><a href="estadistica-adicciones.html">Adicciones</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="estadistica-general.html">General</a></li>
@@ -66,29 +63,19 @@
     </div><!-- container-fluid -->
 </nav> <!-- nav -->
 <div class="container">
-    <div class="panel panel-warning">
+    <div class="panel panel-info" ng-controller="VihController">
         <div class="panel-heading">
-            <h3 class="panel-title">Modificar Nombre</h3>
+            <h3 class="panel-title">Estadistica Vih</h3>
         </div>
         <div class="panel-body">
-
-            <form action="" name="modificar-nombre" id="modificar-nombre">
-                <div class="form-group">
-                    <label class="col-sm-2 col-md-2 control-label" for="nombre">Nombre</label>
-                    <div class="col-sm-4 col-md-4">
-                        <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre" autocomplete="off">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-6 col-md-6">
-                        <button type="submit" class="btn btn-primary">Modificar</button>
-                    </div>
-                </div>
-            </form>
+            <p>Total de las encuestas Vih ingresadas: {{ numeroEncuestas }}</p>
         </div>
     </div>
 
 </div>
+
+
+
 
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -100,10 +87,10 @@
 <script src="https://www.gstatic.com/firebasejs/3.7.0/firebase.js"></script>
 <!-- Encuesta Api -->
 <script src="js/encuesta_api.js"></script>
+<!-- Angular -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.js"></script>
 <!-- Home -->
-<script src="js/modificar-nombre.js"></script>
-<!-- Notify -->
-<script src="js/notify.js"></script>
+<script src="js/estadistica.js"></script>
 
 </body>
 </html>

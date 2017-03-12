@@ -1,7 +1,7 @@
 /**
  * Created by webcoder on 9/3/17.
  */
-$(document).ready(function () {
+$(function () {
     'use strict';
     /*
      COMIENZO Procesar el barrio ingresado con la api de Google

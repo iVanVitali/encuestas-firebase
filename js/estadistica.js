@@ -1,28 +1,12 @@
 /**
- * Created by webcoder on 9/3/17.
+ * Created by webcoder on 11/3/17.
  */
+
+
     'use strict';
 
-    var app1 = angular.module('encApp', []);
-
-    app1.controller('UsuarioController', function($scope, $timeout) {
-
-        var auth = encuestaApp.auth();
-
-        auth.onAuthStateChanged(function(user) {
-            if (user) {
-                $timeout(function () {
-                    $scope.nombre = user.displayName;
-                });
-            }
-        });
-    });
-
-
-
-$(document).ready(function () {
-
     var auth = encuestaApp.auth();
+
     var index = "index.html";
 
     function redirect(ruta) {
@@ -31,7 +15,7 @@ $(document).ready(function () {
 
     function salir() {
         auth.signOut().then(function() {
-            console.log('Usuario deslogueado!');
+            //console.log('Usuario deslogueado!');
             unsetAppCookie;
             redirect(index);
         }, function(error) {
@@ -40,8 +24,10 @@ $(document).ready(function () {
         });
     }
 
+
     auth.onAuthStateChanged(function(user) {
         if (user) {
+            $('.navbar-right').text('');
             // Mostrar el menu del usuario logueado
             var userMenu = '<li class="dropdown">';
             userMenu += '<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">' + user.displayName + '<span class="caret"></span></a>';
@@ -61,4 +47,28 @@ $(document).ready(function () {
         }
     });
 
-});
+    var app = angular.module('encuestaApp', []);
+
+    app.controller('VihController', function($scope, $timeout) {
+        var encuestaRyVRef = encuestaApp.database().ref();
+        var encuestaVihRef = encuestaRyVRef.child('encuesta-vih');
+        var encuestasVih = encuestaVihRef.child('encuestas');
+
+        var usuariosRef = encuestaRyVRef.child('usuarios');
+
+
+        encuestasVih.on('value', function (snap) {
+            $timeout(function () {
+                $scope.numeroEncuestas = snap.numChildren();
+                //console.log(snap.numChildren());
+            });
+        });
+
+        usuariosRef.once('value', function (snap) {
+            $timeout(function () {
+                $scope.usuarios = snap.val();
+                //console.log(snap.val());
+            });
+        });
+
+    });
