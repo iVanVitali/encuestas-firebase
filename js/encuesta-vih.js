@@ -88,10 +88,14 @@ $(function () {
         var ocupacion = $("input[name=ocupacion]").val();
         var barrio = $("input[name=barrio]").val();
         var cp = $("input[name=cp]").val();
-
+        var fechaEncuesta = $("input[name=fechaEncuesta]").val();
 
         if(email.length > 0) {
             encuestaVih['correo'] = email;
+        }
+
+        if(fechaEncuesta.length > 0) {
+            encuestaVih['fecha encuesta'] = new Date(fechaEncuesta).getTime();
         }
 
         if(edad.length > 0) {
@@ -252,7 +256,7 @@ $(function () {
         // Verificar si fue ingresado el sexo de la persona encuestada
         if (sexo.length === 0) {
             error['codigo'] = 10;
-            error['mensaje'] = "Falta completar el sexo de la persona encuestada";
+            error['mensaje'] = "Falta completar el genero de la persona encuestada";
         } else {
             encuestaVih['sexo'] = sexo.val();
         }
@@ -399,6 +403,11 @@ $(function () {
         if("cp" in encuestaVih) {
             pregunta['cp'] = encuestaVih.cp;
         }
+
+        if("fecha encuesta" in encuestaVih) {
+            pregunta['fecha encuesta'] = encuestaVih['fecha encuesta'];
+        }
+
         pregunta['sexo'] = encuestaVih.sexo;
         pregunta['estado civil'] = encuestaVih['estado civil'];
         pregunta['estudios'] = encuestaVih.estudios;

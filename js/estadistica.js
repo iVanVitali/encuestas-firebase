@@ -2,8 +2,32 @@
  * Created by webcoder on 11/3/17.
  */
 
-
+(function () {
     'use strict';
+    var app = angular.module('encuestaApp', []);
+
+    app.controller('VihController', function($scope, $timeout) {
+        var encuestaRyVRef = encuestaApp.database().ref();
+        var encuestaVihRef = encuestaRyVRef.child('encuesta-vih');
+        var encuestasVih = encuestaVihRef.child('encuestas');
+
+        var usuariosRef = encuestaRyVRef.child('usuarios');
+
+
+        encuestasVih.on('value', function (snap) {
+            $timeout(function () {
+                $scope.numeroEncuestas = snap.numChildren();
+                //console.log(snap.numChildren());
+            });
+        });
+
+        usuariosRef.once('value', function (snap) {
+            $timeout(function () {
+                $scope.usuarios = snap.val();
+                //console.log(snap.val());
+            });
+        });
+    });
 
     var auth = encuestaApp.auth();
 
@@ -47,28 +71,9 @@
         }
     });
 
-    var app = angular.module('encuestaApp', []);
-
-    app.controller('VihController', function($scope, $timeout) {
-        var encuestaRyVRef = encuestaApp.database().ref();
-        var encuestaVihRef = encuestaRyVRef.child('encuesta-vih');
-        var encuestasVih = encuestaVihRef.child('encuestas');
-
-        var usuariosRef = encuestaRyVRef.child('usuarios');
+})();
 
 
-        encuestasVih.on('value', function (snap) {
-            $timeout(function () {
-                $scope.numeroEncuestas = snap.numChildren();
-                //console.log(snap.numChildren());
-            });
-        });
 
-        usuariosRef.once('value', function (snap) {
-            $timeout(function () {
-                $scope.usuarios = snap.val();
-                //console.log(snap.val());
-            });
-        });
 
-    });
+
