@@ -1,0 +1,22 @@
+{
+  "name": "encuesta-ryv-app",
+  "version": "1.0.0",
+  "description": "Aplicacion Web desarrollada para ingresar las encuestas de Vih y Adicciones realizadas en diferentes puntos del pais.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iVanVitali/encuestas-firebase.git"
+  },
+  "author": "Ivan Vitali",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iVanVitali/encuestas-firebase/issues"
+  },
+  "homepage": "https://github.com/iVanVitali/encuestas-firebase#readme",
+  "dependencies": {
+    "angular": "^1.6.4"
+  }
+}

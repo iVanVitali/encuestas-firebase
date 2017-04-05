@@ -5,3 +5,4 @@ functions/
 public/
 database.rules.json
 firebase.json
+node_modules
