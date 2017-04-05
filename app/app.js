@@ -3,12 +3,11 @@
     
     angular.module('EncuestaRyvApp', [
         // Angular modules
-        'ngRoute'
 
         // Custom modules
-        
+        'Core'
         // 3rd Party Modules
-        
+
     ]);
     
  }());
