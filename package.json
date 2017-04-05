@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/iVanVitali/encuestas-firebase#readme",
   "dependencies": {
-    "angular": "^1.6.4"
+    "angular": "^1.6.4",
+    "angular-route": "^1.6.4"
   }
 }
